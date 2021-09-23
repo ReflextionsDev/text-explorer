@@ -12,17 +12,29 @@ const prompt = require('prompt-sync')({ sigint: true })
 
 
 let x = 0, y = 0, location
-let playing = true;
-
+let playing = true, weapon = false;
+let ending;
 
 console.log("You awaken, uncertain of where you are. Slowly your head clears and you remember that you were beaten and robbed. Your favorite hat is gone. You stand up and swear revenge.")
 
 while (playing) {
 
-    if (x === -3) {
-        playing = false;
-        break
+    let input = prompt("Your coordinates are (" + x + ", " + y + "). Would you like to go 'up', 'right', 'down', or 'left'? ")
+
+    if (input === 'left') {
+        x--
     }
+    else if (input === 'right') {
+        x++
+    }
+    else if (input === 'up') {
+        y++
+    }
+    else if (input === 'down') {
+        y--
+    }
+
+    console.log('\n')
 
     if (x === -2) {
         if (y === -2) {
@@ -39,6 +51,10 @@ while (playing) {
         }
         if (y === 2) {
             location = "You hear horses behind you. You turn around as an arrow flies by your head. You see a group of highwaymen, and the leader is wearing your hat. They're here to finish what they started."
+            playing = false;
+
+            //if has dagger, else died
+            ending = "win";
         }
     }
 
@@ -76,6 +92,8 @@ while (playing) {
         }
         if (y === 1) {
             location = "You see a fire and approach it hoping to share in the warmth. As you get closer, you realize it's surrounded by bandits. But they've already seen you. They're drunk and they're angry."
+
+            //clear if has dagger, else died
         }
         if (y === 2) {
             location = "You come across a humble magic shop. You never had the aptitude. You curse your parents for their bad genes and move on."
@@ -102,22 +120,13 @@ while (playing) {
 
     console.log(location)
 
-    let input = prompt("Your coordinates are (" + x + ", " + y + "). Would you like to go 'up', 'right', 'down', or 'left'? ")
 
-    if (input === 'left') {
-        x--
-    }
-    else if (input === 'right') {
-        x++
-    }
-    else if (input === 'up') {
-        y++
-    }
-    else if (input === 'down') {
-        y--
-    }
-
-    console.log('\n')
 }
 
-console.log("End!")
+
+if (ending == 'win') {
+    console.log("Thanfully, you have a weapon at your side. In a hat-obsessed-rage you cut down your foes. ")
+}
+else if (ending == 'lose') {
+    console.log("Nobody will ever know why you ran into a battle empty handed, and unfortunately you'll never be able to explain it cause you're dead.")
+}
