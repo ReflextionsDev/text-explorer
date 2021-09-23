@@ -21,17 +21,35 @@ while (playing) {
 
     let input = prompt("Your coordinates are (" + x + ", " + y + "). Would you like to go 'up', 'right', 'down', or 'left'? ")
 
+
     if (input === 'left') {
-        x--
+        if (x > -2) {
+            x--
+        } else {
+            console.log("You cannot go that way.")
+        }
+
     }
     else if (input === 'right') {
-        x++
+        if (x < 2) {
+            x++
+        } else {
+            console.log("You cannot go that way.")
+        }
     }
     else if (input === 'up') {
-        y++
+        if (y < 2) {
+            y++
+        } else {
+            console.log("You cannot go that way.")
+        }
     }
     else if (input === 'down') {
-        y--
+        if (y > -2) {
+            y--
+        } else {
+            console.log("You cannot go that way.")
+        }
     }
 
     console.log('\n')
@@ -62,7 +80,7 @@ while (playing) {
         }
     }
 
-    if (x === -1) {
+    else if (x === -1) {
         if (y === -2) {
             location = "Howls break out as you see a pack of wolves eying you from a ledge. Seems they'll leave you alone if you keep your distance."
         }
@@ -81,11 +99,11 @@ while (playing) {
         }
     }
 
-    if (x === -0) {
+    else if (x === -0) {
         location = "You stand beside the river, which runs to the North and South as far as you can see. You should be able to swim across."
     }
 
-    if (x === 1) {
+    else if (x === 1) {
         if (y === -2) {
             location = "You walk up to a watchtower. The guard tells you saw a shady group going to the north."
         }
@@ -124,7 +142,7 @@ while (playing) {
         }
     }
 
-    if (x === 2) {
+    else if (x === 2) {
         if (y === -2) {
             location = "Weary, you enter a tavern. After a few drinks you feel better until you remember your hat is gone."
         }
